@@ -6,15 +6,15 @@ dollar.get('http://www.hs.fi/').then(function($) {
   console.log('With full jQuery:\t', extractData($))
 })
 
-dollar.get('http://www.hs.fi/', {fullJQuery: false}).then(function($) {
+dollar.get({url: 'http://www.hs.fi/', fullJQuery: false}).then(function($) {
   console.log('With faster:\t\t', extractData($))
 })
 
-dollar.get(hs, {fullJQuery: false}).then(function($) {
+dollar.get({html: hs, fullJQuery: false}).then(function($) {
   console.log('With faster local:\t', extractData($))
 })
 
-dollar.get(hs).then(function($) {
+dollar.get({html: hs}).then(function($) {
   console.log('With full jQuery local:\t', extractData($))
 })
 
