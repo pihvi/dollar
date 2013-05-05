@@ -9,17 +9,25 @@ var defaults = {
 exports.get = function(url, options) {
   var opts = options || defaults
   var deferred = Q.defer()
-  request(url, function(err, resp, body){
-    if (err) {
-      deferred.reject(err)
-    } else {
-      if (opts.fullJQuery) {
-        jsdomify(body, deferred);
+  if (url.indexOf('http') === 0) {
+    request(url, function(err, resp, body){
+      if (err) {
+        deferred.reject(err)
       } else {
-        cheerify(body, deferred);
+        if (opts.fullJQuery) {
+          jsdomify(body, deferred)
+        } else {
+          cheerify(body, deferred)
+        }
       }
+    })
+  } else {
+    if (opts.fullJQuery) {
+      jsdomify(url, deferred)
+    } else {
+      cheerify(url, deferred)
     }
-  })
+  }
   return deferred.promise
 }
 
