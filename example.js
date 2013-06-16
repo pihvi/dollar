@@ -1,5 +1,6 @@
 var dollar = require('./dollar')
 var hs = require('fs').readFileSync("./hs.fi.html").toString()
+var hsPromise = require('q-io/fs').read("./hs.fi.html")
 console.log('Start..')
 
 dollar.get('http://www.hs.fi/').then(function($) {
@@ -16,6 +17,10 @@ dollar.get({html: hs, fullJQuery: false}).then(function($) {
 
 dollar.get({html: hs}).then(function($) {
   console.log('With full jQuery local:\t', extractData($))
+})
+
+dollar.get({htmlPromise: hsPromise, fullJQuery: false}).then(function($) {
+  console.log('With promised html:\t', extractData($))
 })
 
 function extractData($) {
