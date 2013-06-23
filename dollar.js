@@ -3,6 +3,7 @@ var cheerio = require("cheerio")
 var request = require("request")
 var jsdom = require("jsdom")
 var _ = require("lodash")
+var fs = require("fs")
 
 var defaults = {
   fullJQuery: true,
@@ -30,11 +31,12 @@ function cheerify(htmlPromise) {
 }
 
 function jsdomify(htmlPromise) {
+  var jquery = fs.readFileSync("./jquery.js").toString()
   var deferred = Q.defer()
   htmlPromise.then(function(body) {
     jsdom.env({
       html: body,
-      scripts: ['http://code.jquery.com/jquery.js'],
+      src: [jquery],
       done: function(errors, window) {
         if (errors) {
           deferred.reject(errors)
