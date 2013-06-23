@@ -1,6 +1,6 @@
-var dollar = require('./dollar')
-var hs = require('fs').readFileSync("./hs.fi.html").toString()
-var hsPromise = require('q-io/fs').read("./hs.fi.html")
+var dollar = require('./../lib/dollar')
+var hs = require('fs').readFileSync(__dirname + '/hs.fi.html').toString()
+var hsPromise = require('q-io/fs').read(__dirname + '/hs.fi.html')
 console.log('Start..')
 
 dollar.get('http://www.hs.fi/').then(function($) {

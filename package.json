@@ -5,7 +5,7 @@
   "author": "Antti Mattila <pihvi@live.com>",
   "repository": "git://github.com/pihvi/dollar",
   "version": "0.0.4",
-  "main": "./dollar.js",
+  "main": "./lib/dollar.js",
   "license": "Apache 2.0",
   "dependencies": {
     "request": "2.20.0",
