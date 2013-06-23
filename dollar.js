@@ -32,17 +32,17 @@ function cheerify(htmlPromise) {
 function jsdomify(htmlPromise) {
   var deferred = Q.defer()
   htmlPromise.then(function(body) {
-    jsdom.env(
-      body,
-      ['http://code.jquery.com/jquery.js'],
-      function(errors, window) {
+    jsdom.env({
+      html: body,
+      scripts: ['http://code.jquery.com/jquery.js'],
+      done: function(errors, window) {
         if (errors) {
           deferred.reject(errors)
         } else {
           deferred.resolve(window.$)
         }
       }
-    )
+    })
   })
   return deferred.promise
 }

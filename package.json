@@ -9,7 +9,7 @@
   "license": "Apache 2.0",
   "dependencies": {
     "request": "2.20.0",
-    "jsdom": "0.6.0",
+    "jsdom": "0.6.5",
     "lodash": "1.2.1",
     "cheerio": "git://github.com/pihvi/cheerio.git#data-function",
     "q-io": "1.7.1",
