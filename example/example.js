@@ -27,5 +27,5 @@ dollar.get({htmlPromise: hsPromise, fullJQuery: false}).then(function($) {
 
 function extractData($) {
   var a = $('.module.teaser').first().find('a.article-link').first()
-  return a.text().trim() + ' / ' + a.data('article-id') + ' (id of type: ' + (typeof a.data('article-id')) + ') in ' + (Date.now() - start) + 'ms'
+  return a.text().trim() + ' / ' + a.attr('data-article-id') + ' (id of type: ' + (typeof a.attr('data-article-id')) + ') in ' + (Date.now() - start) + 'ms'
 }
