@@ -8,11 +8,11 @@
   "main": "./lib/dollar.js",
   "license": "Apache 2.0",
   "dependencies": {
-    "request": "2.20.0",
-    "jsdom": "0.6.5",
-    "lodash": "1.2.1",
+    "request": "2.34.0",
+    "jsdom": "0.10.3",
+    "lodash": "2.4.1",
     "cheerio": "git://github.com/mcwhittemore/cheerio.git",
-    "q-io": "1.7.1",
-    "q": "0.9.2"
+    "q-io": "1.11.0",
+    "q": "1.0.1"
   }
 }
