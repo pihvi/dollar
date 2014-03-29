@@ -1,6 +1,8 @@
 var dollar = require('./../lib/dollar')
 var hs = require('fs').readFileSync(__dirname + '/hs.fi.html').toString()
 var hsPromise = require('q-io/fs').read(__dirname + '/hs.fi.html')
+var start = Date.now()
+
 console.log('Start..')
 
 dollar.get('http://www.hs.fi/').then(function($) {
@@ -25,5 +27,5 @@ dollar.get({htmlPromise: hsPromise, fullJQuery: false}).then(function($) {
 
 function extractData($) {
   var a = $('.module.teaser').first().find('a.article-link').first()
-  return a.text().trim() + ' / ' + a.data('article-id') + ' (id of type: ' + (typeof a.data('article-id')) + ')'
+  return a.text().trim() + ' / ' + a.data('article-id') + ' (id of type: ' + (typeof a.data('article-id')) + ') in ' + (Date.now() - start) + 'ms'
 }
