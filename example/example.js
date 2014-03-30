@@ -1,16 +1,16 @@
 var dollar = require('./../lib/dollar')
 var hs = require('fs').readFileSync(__dirname + '/hs.fi.html').toString()
-var hsPromise = require('q-io/fs').read(__dirname + '/hs.fi.html')
+var hsPromise = require('q')(hs)
 var start = Date.now()
 
 console.log('Start..')
 
 dollar.get('http://www.hs.fi/').then(function($) {
-  console.log('With full jQuery:\t', extractData($))
+  console.log('With full jQuery and internet:\t', extractData($))
 })
 
 dollar.get({url: 'http://www.hs.fi/', fullJQuery: false}).then(function($) {
-  console.log('With faster:\t\t', extractData($))
+  console.log('With faster and internet:\t\t', extractData($))
 })
 
 dollar.get({html: hs, fullJQuery: false}).then(function($) {
@@ -22,7 +22,7 @@ dollar.get({html: hs}).then(function($) {
 })
 
 dollar.get({htmlPromise: hsPromise, fullJQuery: false}).then(function($) {
-  console.log('With promised html:\t', extractData($))
+  console.log('With faster promised local html:\t', extractData($))
 })
 
 function extractData($) {
