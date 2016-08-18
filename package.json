@@ -4,9 +4,9 @@
   "keywords": ["scrape", "$", "jQuery", "spider"],
   "author": "Antti Mattila <pihvi@live.com>",
   "repository": "git://github.com/pihvi/dollar",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "main": "./lib/dollar.js",
-  "license": "Apache 2.0",
+  "license": "Apache-2.0",
   "dependencies": {
     "request": "2.74.0",
     "jsdom": "9.4.2",
