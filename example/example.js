@@ -1,27 +1,27 @@
 var dollar = require('./../lib/dollar')
-var hs = require('fs').readFileSync(__dirname + '/hs.fi.html').toString()
-var hsPromise = require('q')(hs)
+var wikiHtml = require('fs').readFileSync(__dirname + '/wikipedia.html').toString()
+var wikiPromise = require('q')(wikiHtml)
 var start = Date.now()
 
 console.log('Start..')
 
-dollar.get('http://www.hs.fi/').then(function($) {
+dollar.get('https://www.wikipedia.org/').then(function($) {
   console.log(buildOutput('With full jQuery and internet', $, start))
 })
 
-dollar.get({url: 'http://www.hs.fi/', fullJQuery: false}).then(function($) {
+dollar.get({url: 'https://www.wikipedia.org/', fullJQuery: false}).then(function($) {
   console.log(buildOutput('With faster and internet', $, start))
 })
 
-dollar.get({html: hs, fullJQuery: false}).then(function($) {
+dollar.get({html: wikiHtml, fullJQuery: false}).then(function($) {
   console.log(buildOutput('With faster local', $, start))
 })
 
-dollar.get({html: hs}).then(function($) {
+dollar.get({html: wikiHtml}).then(function($) {
   console.log(buildOutput('With full jQuery local', $, start))
 })
 
-dollar.get({htmlPromise: hsPromise, fullJQuery: false}).then(function($) {
+dollar.get({htmlPromise: wikiPromise, fullJQuery: false}).then(function($) {
   console.log(buildOutput('With faster promised local html', $, start))
 })
 
@@ -38,6 +38,5 @@ function buildOutput(msg, $, begin) {
 }
 
 function extractData($) {
-  var a = $('.module.teaser').first().find('a.article-link').first()
-  return a.text().trim() + ' / ' + a.attr('data-article-id')
+  return $('h1').text().trim()
 }
