@@ -9,7 +9,41 @@ dollar
     console.log($('h1').text())
   })
 ```
+### Encoding support ###
+```javascript
+var dollar = require('dollar')
+dollar
+  .get({url: 'http://reaktor.fi/', encoding: 'ISO-8859-1'})
+  .then(function($) {
+    console.log($('h1').text())
+  })
+```
+Output encoding can be set with "encodingTo" parameter.
+### Faster performance ###
+```javascript
+var dollar = require('dollar')
+dollar
+  .get({url: 'http://reaktor.fi/', fullJQuery: false})
+  .then(function($) {
+    console.log($('h1').text())
+  })
+```
+Uses cheerio instead of jQuery for better performance.
+### All parameters and defaults ###
+```javascript
+{
+  fullJQuery: true,
+  url: undefined,
+  html: undefined,
+  htmlPromise: undefined,
+  encoding: 'UTF-8',
+  encodingTo: 'UTF-8'
+}
+```
+
 ## Changelog ##
+### 0.3.0 - 2016-08-21 ###
+- Encoding support
 
 ### 0.2.0 - 2016-08-18 ###
 - Upgrade jQuery from 2 to 3
