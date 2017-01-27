@@ -9,6 +9,7 @@ dollar
     console.log($('h1').text())
   })
 ```
+
 ### Encoding support ###
 ```javascript
 var dollar = require('dollar')
@@ -19,6 +20,7 @@ dollar
   })
 ```
 Output encoding can be set with "encodingTo" parameter.
+
 ### Faster performance ###
 ```javascript
 var dollar = require('dollar')
@@ -29,6 +31,7 @@ dollar
   })
 ```
 Uses cheerio instead of jQuery for better performance.
+
 ### All parameters and defaults ###
 ```javascript
 {
@@ -42,6 +45,9 @@ Uses cheerio instead of jQuery for better performance.
 ```
 
 ## Changelog ##
+### 0.3.1 - 2016-01-28 ###
+- Upgrade npm deps
+
 ### 0.3.0 - 2016-08-21 ###
 - Encoding support
 
