@@ -1,6 +1,8 @@
 Web scraper with a jQuery like wrapper.
 
 ## Usage ##
+
+[![Greenkeeper badge](https://badges.greenkeeper.io/pihvi/dollar.svg)](https://greenkeeper.io/)
 ```javascript
 var dollar = require('dollar')
 dollar
