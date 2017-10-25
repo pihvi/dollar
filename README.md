@@ -45,6 +45,9 @@ Uses cheerio instead of jQuery for better performance.
 ```
 
 ## Changelog ##
+### 0.3.2 - 2017-10-25 ###
+- Upgrade npm deps
+
 ### 0.3.1 - 2016-01-28 ###
 - Upgrade npm deps
 
