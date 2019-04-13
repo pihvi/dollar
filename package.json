@@ -16,7 +16,7 @@
   "dependencies": {
     "cheerio": "1.0.0-rc.2",
     "encoding": "0.1.12",
-    "jquery": "3.3.1",
+    "jquery": "3.4.0",
     "jsdom": "^9",
     "lodash": "4.17.5",
     "q": "1.5.1",
