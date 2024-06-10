@@ -17,5 +17,5 @@ test('jsdom jQuery', async () => {
   const jQuery = await fs.readFile(jQueryPath, 'utf-8')
   dom.window.eval(jQuery)
   const h1 = dom.window.$('h1').text()
-  assert.equal(h1, 'lol-2')
+  assert.equal(h1, 'lol')
 })
