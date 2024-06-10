@@ -25,14 +25,6 @@ dollar.get({htmlPromise: wikiPromise, fullJQuery: false}).then(function($) {
   console.log(buildOutput('With faster promised local html', $, start))
 })
 
-sleep(1000).then(function() {
-  console.log('End..')
-})
-
-function sleep(ms) {
-  return new Promise(resolve => setTimeout(resolve, ms))
-}
-
 function buildMsg(msg) {
   var result = msg + ':'
   while (result.length < 35) {
