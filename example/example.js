@@ -1,9 +1,8 @@
 import * as dollar from './../lib/dollar.js'
 import fs from 'fs'
-import q from 'q'
 
 const wikiHtml = fs.readFileSync(`./example/wikipedia.html`, 'utf8')
-const wikiPromise = q(wikiHtml)
+const wikiPromise = Promise.resolve(wikiHtml)
 const start = Date.now()
 
 console.log('Start..')
