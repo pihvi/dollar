@@ -9,7 +9,7 @@
     "spider"
   ],
   "repository": "git://github.com/pihvi/dollar",
-  "version": "0.3.4",
+  "version": "1.0.0",
   "main": "./lib/dollar.js",
   "type": "module",
   "license": "Apache-2.0",
@@ -18,7 +18,6 @@
   },
   "dependencies": {
     "cheerio": "1.0.0-rc.12",
-    "encoding": "0.1.13",
     "jquery": "3.7.1",
     "jsdom": "24.1.0"
   }

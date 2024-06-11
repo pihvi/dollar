@@ -1,27 +1,17 @@
 Web scraper with a jQuery like wrapper.
 
 ## Usage ##
+Uses Cheerio by default instead of jQuery for better performance.
 ```javascript
 var dollar = require('dollar')
 dollar
-  .get('http://reaktor.fi/')
+  .get('https://www.wikipedia.org/')
   .then(function($) {
     console.log($('h1').text())
   })
 ```
 
-### Encoding support ###
-```javascript
-var dollar = require('dollar')
-dollar
-  .get({url: 'http://reaktor.fi/', encoding: 'ISO-8859-1'})
-  .then(function($) {
-    console.log($('h1').text())
-  })
-```
-Output encoding can be set with "encodingTo" parameter.
-
-### Faster performance ###
+### Use real jQuery which is slower ###
 ```javascript
 var dollar = require('dollar')
 dollar
@@ -30,7 +20,6 @@ dollar
     console.log($('h1').text())
   })
 ```
-Uses cheerio instead of jQuery for better performance.
 
 ### All parameters and defaults ###
 ```javascript
@@ -39,12 +28,22 @@ Uses cheerio instead of jQuery for better performance.
   url: undefined,
   html: undefined,
   htmlPromise: undefined,
-  encoding: 'UTF-8',
-  encodingTo: 'UTF-8'
 }
 ```
 
+## License ##
+Apache 2.0
+
 ## Changelog ##
+### 1.0.0 - 2024-06-11 ###
+- Use ES6
+- Remove Q and use native promises
+- Remove lodash and use native functions
+- Remove request and use fetch
+- Remove encoding lib
+- Upgrade rest i.e. jQuery, Cheerio and jsdom
+
+
 ### 0.3.3 - 2017-10-25 ###
 - Upgrade jQuery to 3.2.1 and use it via npm
 
@@ -63,6 +62,3 @@ Uses cheerio instead of jQuery for better performance.
 
 ### 0.1.0 - 2014-03-30 ###
 - something
-
-## License ##
-Apache 2.0
