@@ -35,9 +35,7 @@ const buildMsg = (msg) => {
 }
 
 const buildOutput = (msg, $, begin) => {
-  return `${buildMsg(msg)}${extractData($).replace(/\n/g, ' ')} / ${(Date.now() - begin)}ms`
+  const txt = $('h1').text().trim().replace(/\n/g, ' ')
+  return `${buildMsg(msg)}${txt} / ${(Date.now() - begin)} ms`
 }
 
-const extractData = ($) => {
-  return $('h1').text().trim()
-}
