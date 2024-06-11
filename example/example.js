@@ -4,7 +4,6 @@ import fs from 'fs'
 const wikiHtml = fs.readFileSync(`./example/wikipedia.html`, 'utf8')
 const wikiPromise = Promise.resolve(wikiHtml)
 const start = Date.now()
-
 console.log('Start..')
 
 dollar.get('https://www.wikipedia.org/').then(($) => {
@@ -27,7 +26,7 @@ dollar.get({htmlPromise: wikiPromise, fullJQuery: false}).then(($) => {
   console.log(buildOutput('With faster promised local html', $, start))
 })
 
-function buildMsg(msg) {
+const buildMsg = (msg) => {
   let result = `${msg}:`
   while (result.length < 35) {
     result += ' '
@@ -35,10 +34,10 @@ function buildMsg(msg) {
   return result
 }
 
-function buildOutput(msg, $, begin) {
+const buildOutput = (msg, $, begin) => {
   return `${buildMsg(msg)}${extractData($).replace(/\n/g, ' ')} / ${(Date.now() - begin)}ms`
 }
 
-function extractData($) {
+const extractData = ($) => {
   return $('h1').text().trim()
 }
