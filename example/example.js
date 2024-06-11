@@ -6,25 +6,35 @@ const wikiPromise = Promise.resolve(wikiHtml)
 const start = Date.now()
 console.log('Start..')
 
-dollar.get('https://www.wikipedia.org/').then(($) => {
-  console.log(buildOutput('With full jQuery and internet', $, start))
-})
+dollar
+  .get({url: 'https://www.wikipedia.org/', fullJQuery: true})
+  .then(($) => {
+    console.log(buildOutput('With full jQuery and internet', $, start))
+  })
 
-dollar.get({url: 'https://www.wikipedia.org/', fullJQuery: false}).then(($) => {
-  console.log(buildOutput('With faster and internet', $, start))
-})
+dollar
+  .get('https://www.wikipedia.org/')
+  .then(($) => {
+    console.log(buildOutput('With faster and internet', $, start))
+  })
 
-dollar.get({html: wikiHtml, fullJQuery: false}).then(($) => {
-  console.log(buildOutput('With faster local', $, start))
-})
+dollar
+  .get({html: wikiHtml})
+  .then(($) => {
+    console.log(buildOutput('With faster local', $, start))
+  })
 
-dollar.get({html: wikiHtml}).then(($) => {
-  console.log(buildOutput('With full jQuery local', $, start))
-})
+dollar
+  .get({html: wikiHtml, fullJQuery: true})
+  .then(($) => {
+    console.log(buildOutput('With full jQuery local', $, start))
+  })
 
-dollar.get({htmlPromise: wikiPromise, fullJQuery: false}).then(($) => {
-  console.log(buildOutput('With faster promised local html', $, start))
-})
+dollar
+  .get({htmlPromise: wikiPromise, fullJQuery: false})
+  .then(($) => {
+    console.log(buildOutput('With faster promised local html', $, start))
+  })
 
 const buildMsg = (msg) => {
   let result = `${msg}:`
@@ -38,4 +48,3 @@ const buildOutput = (msg, $, begin) => {
   const txt = $('h1').text().trim().replace(/\n/g, ' ')
   return `${buildMsg(msg)}${txt} / ${(Date.now() - begin)} ms`
 }
-

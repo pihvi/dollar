@@ -3,28 +3,22 @@ Web scraper with a jQuery like wrapper.
 ## Usage ##
 Uses Cheerio by default instead of jQuery for better performance.
 ```javascript
-var dollar = require('dollar')
-dollar
-  .get('https://www.wikipedia.org/')
-  .then(function($) {
-    console.log($('h1').text())
-  })
+import * as dollar from 'dollar'
+
+const $ = await dollar.get('https://www.wikipedia.org/')
+console.log($('h1').text())
 ```
 
 ### Use real jQuery which is slower ###
 ```javascript
-var dollar = require('dollar')
-dollar
-  .get({url: 'http://reaktor.fi/', fullJQuery: false})
-  .then(function($) {
-    console.log($('h1').text())
-  })
+const $ = await dollar.get({url: 'http://reaktor.fi/', fullJQuery: false})
+console.log($('h1').text())
 ```
 
 ### All parameters and defaults ###
 ```javascript
 {
-  fullJQuery: true,
+  fullJQuery: false,
   url: undefined,
   html: undefined,
   htmlPromise: undefined,
