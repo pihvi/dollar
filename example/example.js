@@ -1,32 +1,35 @@
-var dollar = require('./../lib/dollar')
-var wikiHtml = require('fs').readFileSync(__dirname + '/wikipedia.html').toString()
-var wikiPromise = require('q')(wikiHtml)
-var start = Date.now()
+import * as dollar from './../lib/dollar.js'
+import fs from 'fs'
+import q from 'q'
+
+const wikiHtml = fs.readFileSync(`./example/wikipedia.html`, 'utf8')
+const wikiPromise = q(wikiHtml)
+const start = Date.now()
 
 console.log('Start..')
 
-dollar.get('https://www.wikipedia.org/').then(function($) {
+dollar.get('https://www.wikipedia.org/').then(($) => {
   console.log(buildOutput('With full jQuery and internet', $, start))
 })
 
-dollar.get({url: 'https://www.wikipedia.org/', fullJQuery: false}).then(function($) {
+dollar.get({url: 'https://www.wikipedia.org/', fullJQuery: false}).then(($) => {
   console.log(buildOutput('With faster and internet', $, start))
 })
 
-dollar.get({html: wikiHtml, fullJQuery: false}).then(function($) {
+dollar.get({html: wikiHtml, fullJQuery: false}).then(($) => {
   console.log(buildOutput('With faster local', $, start))
 })
 
-dollar.get({html: wikiHtml}).then(function($) {
+dollar.get({html: wikiHtml}).then(($) => {
   console.log(buildOutput('With full jQuery local', $, start))
 })
 
-dollar.get({htmlPromise: wikiPromise, fullJQuery: false}).then(function($) {
+dollar.get({htmlPromise: wikiPromise, fullJQuery: false}).then(($) => {
   console.log(buildOutput('With faster promised local html', $, start))
 })
 
 function buildMsg(msg) {
-  var result = msg + ':'
+  let result = `${msg}:`
   while (result.length < 35) {
     result += ' '
   }
@@ -34,7 +37,7 @@ function buildMsg(msg) {
 }
 
 function buildOutput(msg, $, begin) {
-  return buildMsg(msg) + extractData($).replaceAll('\n', ' ') + ' / ' + (Date.now() - begin) + 'ms'
+  return `${buildMsg(msg)}${extractData($).replace(/\n/g, ' ')} / ${(Date.now() - begin)}ms`
 }
 
 function extractData($) {
