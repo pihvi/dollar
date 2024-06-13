@@ -11,14 +11,14 @@ console.log($('h1').text())
 
 ### Use real jQuery which is slower ###
 ```javascript
-const $ = await dollar.get({url: 'http://reaktor.fi/', fullJQuery: false})
+const $ = await dollar.get({url: 'http://reaktor.fi/', jQuery: true})
 console.log($('h1').text())
 ```
 
 ### All parameters and defaults ###
 ```javascript
 {
-  fullJQuery: false,
+  jQuery: false,
   url: undefined,
   html: undefined,
   htmlPromise: undefined,

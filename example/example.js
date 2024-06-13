@@ -7,7 +7,7 @@ const start = Date.now()
 console.log('Start..')
 
 dollar
-  .get({url: 'https://www.wikipedia.org/', fullJQuery: true})
+  .get({url: 'https://www.wikipedia.org/', jQuery: true})
   .then(($) => {
     console.log(buildOutput('With full jQuery and internet', $, start))
   })
@@ -25,13 +25,13 @@ dollar
   })
 
 dollar
-  .get({html: wikiHtml, fullJQuery: true})
+  .get({html: wikiHtml, jQuery: true})
   .then(($) => {
     console.log(buildOutput('With full jQuery local', $, start))
   })
 
 dollar
-  .get({htmlPromise: wikiPromise, fullJQuery: false})
+  .get({htmlPromise: wikiPromise, jQuery: false})
   .then(($) => {
     console.log(buildOutput('With faster promised local html', $, start))
   })

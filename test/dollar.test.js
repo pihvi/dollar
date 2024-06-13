@@ -17,7 +17,7 @@ describe('with example html', () => {
   })
 
   test('dollar local jQuery', async () => {
-    const $ = await dollar.get({html, fullJQuery: true})
+    const $ = await dollar.get({html, jQuery: true})
     const h1 = $('h1').text().trim()
     assert.equal(h1, 'The Free Encyclopedia')
   })

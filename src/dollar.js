@@ -5,7 +5,7 @@ import {promises as fs} from 'fs'
 const jQueryPromise = fs.readFile('./node_modules/jquery/dist/jquery.js', 'utf8')
 
 const defaults = {
-  fullJQuery: false,
+  jQuery: false,
   url: undefined,
   html: undefined,
   htmlPromise: undefined,
@@ -13,7 +13,7 @@ const defaults = {
 
 export const get = (urlOrOptions) => {
   const opts = buildOptions(urlOrOptions)
-  if (opts.fullJQuery) {
+  if (opts.jQuery) {
     return jsdomify(opts.htmlPromise)
   } else {
     return cheerify(opts.htmlPromise)
