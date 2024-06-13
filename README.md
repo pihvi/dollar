@@ -34,6 +34,9 @@ console.log($('h1').text())
 Apache 2.0
 
 ## Changelog ##
+### 2.0.1 - 2024-06-13 ###
+- Update docs
+
 ### 2.0.0 - 2024-06-13 ###
 - Parameter names changed
 - html parameter can be a Promise or a string
