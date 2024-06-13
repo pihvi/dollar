@@ -8,15 +8,14 @@ const defaults = {
   jQuery: false,
   url: undefined,
   html: undefined,
-  htmlPromise: undefined,
 }
 
 export const get = (urlOrOptions) => {
   const opts = buildOptions(urlOrOptions)
   if (opts.jQuery) {
-    return jsdomify(opts.htmlPromise)
+    return jsdomify(opts.html)
   } else {
-    return cheerify(opts.htmlPromise)
+    return cheerify(opts.html)
   }
 }
 
@@ -33,17 +32,16 @@ const jsdomify = async (htmlPromise) => {
 
 const buildOptions = (urlOrOptions) => {
   const options = moveUrlToDefaultOptions(urlOrOptions)
-  const htmlPromise = buildHtmlPromise(options)
-  return {...options, htmlPromise}
+  return {...options, html: htmlPromise(options)}
 }
 
-const buildHtmlPromise = (options) => {
+const htmlPromise = (options) => {
   if (options.url) {
     return promiseFromUrl(options)
-  } else if (options.html) {
+  } else if (typeof options.html === 'string') {
     return Promise.resolve(options.html)
-  } else if (options.htmlPromise) {
-    return options.htmlPromise
+  } else if (options.html) {
+    return options.html
   } else {
     throw new Error('Did not get url or html to dollarify.')
   }

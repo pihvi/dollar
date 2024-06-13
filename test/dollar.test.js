@@ -5,13 +5,20 @@ import {JSDOM} from 'jsdom'
 import * as dollar from '../src/dollar.js'
 
 describe('with example html', () => {
+  const htmlPromise = fs.readFile('./example/wikipedia.html', 'utf-8')
   let html
   before(async () => {
-    html = await fs.readFile('./example/wikipedia.html', 'utf-8')
+    html = await htmlPromise
   })
 
   test('dollar local faster', async () => {
     const $ = await dollar.get({html})
+    const h1 = $('h1').text().trim()
+    assert.equal(h1, 'The Free Encyclopedia')
+  })
+
+  test('dollar local faster with promise', async () => {
+    const $ = await dollar.get({html: htmlPromise})
     const h1 = $('h1').text().trim()
     assert.equal(h1, 'The Free Encyclopedia')
   })
