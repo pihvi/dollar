@@ -1,4 +1,4 @@
-import cheerio from 'cheerio'
+import * as cheerio from 'cheerio'
 import * as jsdom from 'jsdom'
 import {promises as fs} from 'fs'
 
