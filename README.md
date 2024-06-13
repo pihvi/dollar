@@ -15,13 +15,18 @@ const $ = await dollar.get({url: 'http://reaktor.fi/', jQuery: true})
 console.log($('h1').text())
 ```
 
+### Use given html ###
+```javascript
+const $ = await dollar.get({html: '<html><h1>hello</h1></html>'})
+console.log($('h1').text())
+```
+
 ### All parameters and defaults ###
 ```javascript
 {
   jQuery: false,
-  url: undefined,
-  html: undefined,
-  htmlPromise: undefined,
+  url: undefined, // or string
+  html: undefined, // or string or Promise returning string
 }
 ```
 
@@ -29,6 +34,10 @@ console.log($('h1').text())
 Apache 2.0
 
 ## Changelog ##
+### 2.0.0 - 2024-06-13 ###
+- Parameter names changed
+- html parameter can be a Promise or a string
+
 ### 1.0.0 - 2024-06-11 ###
 - Use ES6
 - Remove Q and use native promises
