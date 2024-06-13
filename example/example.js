@@ -1,4 +1,4 @@
-import * as dollar from './../lib/dollar.js'
+import * as dollar from '../src/dollar.js'
 import fs from 'fs'
 
 const wikiHtml = fs.readFileSync(`./example/wikipedia.html`, 'utf8')

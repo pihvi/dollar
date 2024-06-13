@@ -10,7 +10,7 @@
   ],
   "repository": "git://github.com/pihvi/dollar",
   "version": "1.0.0",
-  "main": "./lib/dollar.js",
+  "main": "src/dollar.js",
   "type": "module",
   "license": "Apache-2.0",
   "scripts": {

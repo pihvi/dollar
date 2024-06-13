@@ -2,7 +2,7 @@ import {before, describe, test} from 'node:test'
 import assert from 'node:assert/strict'
 import {promises as fs} from 'fs'
 import {JSDOM} from 'jsdom'
-import * as dollar from './../lib/dollar.js'
+import * as dollar from '../src/dollar.js'
 
 describe('with example html', () => {
   let html
