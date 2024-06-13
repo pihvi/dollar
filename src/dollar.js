@@ -20,9 +20,8 @@ export const get = (urlOrOptions) => {
   }
 }
 
-const cheerify = (htmlPromise) => {
-  return htmlPromise.then(body => cheerio.load(body))
-}
+const cheerify = async (htmlPromise) =>
+  cheerio.load(await htmlPromise)
 
 const jsdomify = (htmlPromise) => {
   return Promise.all([jQueryPromise, htmlPromise])
