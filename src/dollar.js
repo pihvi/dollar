@@ -23,13 +23,12 @@ export const get = (urlOrOptions) => {
 const cheerify = async (htmlPromise) =>
   cheerio.load(await htmlPromise)
 
-const jsdomify = (htmlPromise) => {
-  return Promise.all([jQueryPromise, htmlPromise])
-    .then(([jquery, body]) => new Promise((resolve, reject) => {
-      const dom = new jsdom.JSDOM(body, {runScripts: 'outside-only'})
-      dom.window.eval(jquery)
-      resolve(dom.window.$)
-    }))
+const jsdomify = async (htmlPromise) => {
+  const [jquery, html] =
+    await Promise.all([jQueryPromise, htmlPromise])
+  const dom = new jsdom.JSDOM(html, {runScripts: 'outside-only'})
+  dom.window.eval(jquery)
+  return dom.window.$
 }
 
 const buildOptions = (urlOrOptions) => {
