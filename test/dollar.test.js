@@ -2,7 +2,7 @@ import {before, describe, test} from 'node:test'
 import assert from 'node:assert/strict'
 import {promises as fs} from 'fs'
 import {JSDOM} from 'jsdom'
-import * as dollar from '../src/dollar.js'
+import dollar from '../src/dollar.js'
 
 describe('with example html', () => {
   const htmlPromise = fs.readFile('./example/wikipedia.html', 'utf-8')
@@ -12,19 +12,19 @@ describe('with example html', () => {
   })
 
   test('dollar local faster', async () => {
-    const $ = await dollar.get({html})
+    const $ = await dollar({html})
     const h1 = $('h1').text().trim()
     assert.equal(h1, 'The Free Encyclopedia')
   })
 
   test('dollar local faster with promise', async () => {
-    const $ = await dollar.get({html: htmlPromise})
+    const $ = await dollar({html: htmlPromise})
     const h1 = $('h1').text().trim()
     assert.equal(h1, 'The Free Encyclopedia')
   })
 
   test('dollar local jQuery', async () => {
-    const $ = await dollar.get({html, jQuery: true})
+    const $ = await dollar({html, jQuery: true})
     const h1 = $('h1').text().trim()
     assert.equal(h1, 'The Free Encyclopedia')
   })

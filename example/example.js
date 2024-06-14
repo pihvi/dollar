@@ -1,4 +1,4 @@
-import * as dollar from '../src/dollar.js'
+import dollar from '../src/dollar.js'
 import fs from 'fs'
 
 const wikiHtml = fs.readFileSync(`./example/wikipedia.html`, 'utf8')
@@ -6,32 +6,27 @@ const wikiPromise = Promise.resolve(wikiHtml)
 const start = Date.now()
 console.log('Start..')
 
-dollar
-  .get({url: 'https://www.wikipedia.org/', jQuery: true})
+dollar({url: 'https://www.wikipedia.org/', jQuery: true})
   .then(($) => {
     console.log(buildOutput('With full jQuery and internet', $, start))
   })
 
-dollar
-  .get('https://www.wikipedia.org/')
+dollar('https://www.wikipedia.org/')
   .then(($) => {
     console.log(buildOutput('With faster and internet', $, start))
   })
 
-dollar
-  .get({html: wikiHtml})
+dollar({html: wikiHtml})
   .then(($) => {
     console.log(buildOutput('With faster local', $, start))
   })
 
-dollar
-  .get({html: wikiHtml, jQuery: true})
+dollar({html: wikiHtml, jQuery: true})
   .then(($) => {
     console.log(buildOutput('With full jQuery local', $, start))
   })
 
-dollar
-  .get({htmlPromise: wikiPromise, jQuery: false})
+dollar({html: wikiPromise, jQuery: false})
   .then(($) => {
     console.log(buildOutput('With faster promised local html', $, start))
   })

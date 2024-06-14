@@ -10,7 +10,7 @@ const defaults = {
   html: undefined,
 }
 
-export const get = (urlOrOptions) => {
+const dollar = (urlOrOptions) => {
   const opts = buildOptions(urlOrOptions)
   if (opts.jQuery) {
     return jsdomify(opts.html)
@@ -62,3 +62,5 @@ const moveUrlToDefaultOptions = (urlOrOptions) => {
     return {...defaults, ...urlOrOptions}
   }
 }
+
+export default dollar
