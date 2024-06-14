@@ -6,7 +6,7 @@ const wikiPromise = Promise.resolve(wikiHtml)
 const start = Date.now()
 console.log('Start..')
 
-dollar({url: 'https://www.wikipedia.org/', jQuery: true})
+dollar('https://www.wikipedia.org/', {jQuery: true})
   .then(($) => {
     console.log(buildOutput('With full jQuery and internet', $, start))
   })

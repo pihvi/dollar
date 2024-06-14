@@ -10,8 +10,8 @@ const defaults = {
   html: undefined,
 }
 
-const dollar = (urlOrOptions) => {
-  const opts = buildOptions(urlOrOptions)
+const dollar = (urlOrOptions, options) => {
+  const opts = buildOptions(urlOrOptions, options)
   if (opts.jQuery) {
     return jsdomify(opts.html)
   } else {
@@ -30,9 +30,9 @@ const jsdomify = async (htmlPromise) => {
   return dom.window.$
 }
 
-const buildOptions = (urlOrOptions) => {
-  const options = moveUrlToDefaultOptions(urlOrOptions)
-  return {...options, html: htmlPromise(options)}
+const buildOptions = (urlOrOptions, options) => {
+  const opts = moveUrlToDefaultOptions(urlOrOptions, options)
+  return {...opts, html: htmlPromise(opts)}
 }
 
 const htmlPromise = (options) => {
@@ -55,9 +55,9 @@ const promiseFromUrl = async (options) => {
   return await response.text()
 }
 
-const moveUrlToDefaultOptions = (urlOrOptions) => {
+const moveUrlToDefaultOptions = (urlOrOptions, options = {}) => {
   if (typeof urlOrOptions === 'string') {
-    return {...defaults, url: urlOrOptions}
+    return {...defaults, ...options, url: urlOrOptions}
   } else {
     return {...defaults, ...urlOrOptions}
   }

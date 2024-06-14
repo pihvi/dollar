@@ -5,19 +5,19 @@ Uses Cheerio by default instead of jQuery for better performance.
 ```javascript
 import * as dollar from 'dollar'
 
-const $ = await dollar.get('https://www.wikipedia.org/')
+const $ = await dollar('https://www.wikipedia.org/')
 console.log($('h1').text())
 ```
 
 ### Use real jQuery which is slower ###
 ```javascript
-const $ = await dollar.get({url: 'http://reaktor.fi/', jQuery: true})
+const $ = await dollar('https://www.wikipedia.org/', {jQuery: true})
 console.log($('h1').text())
 ```
 
 ### Use given html ###
 ```javascript
-const $ = await dollar.get({html: '<html><h1>hello</h1></html>'})
+const $ = await dollar({html: '<html><h1>hello</h1></html>'})
 console.log($('h1').text())
 ```
 
