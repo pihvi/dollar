@@ -9,7 +9,7 @@
     "spider"
   ],
   "repository": "git://github.com/pihvi/dollar",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "main": "src/dollar.js",
   "type": "module",
   "license": "Apache-2.0",
