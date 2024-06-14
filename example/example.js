@@ -8,31 +8,33 @@ console.log('Start..')
 
 dollar('https://www.wikipedia.org/', {jQuery: true})
   .then(($) => {
-    console.log(buildOutput('With full jQuery and internet', $, start))
+    console.log(buildOutput('', $, start))
   })
 
 dollar('https://www.wikipedia.org/')
   .then(($) => {
-    console.log(buildOutput('With faster and internet', $, start))
+    console.log(buildOutput('', $, start))
   })
 
 dollar({html: wikiHtml})
   .then(($) => {
-    console.log(buildOutput('With faster local', $, start))
+    console.log(buildOutput('', $, start))
   })
 
 dollar({html: wikiHtml, jQuery: true})
   .then(($) => {
-    console.log(buildOutput('With full jQuery local', $, start))
+    console.log(buildOutput('', $, start))
   })
 
 dollar({html: wikiPromise, jQuery: false})
   .then(($) => {
-    console.log(buildOutput('With faster promised local html', $, start))
+    console.log(buildOutput('promise', $, start))
   })
 
-const buildMsg = (msg) => {
-  let result = `${msg}:`
+const buildMsg = (msg, $) => {
+  const type = $.dollarOptions.jQuery ? 'jQuery' : 'Cheerio'
+  const source = $.dollarOptions.url ? 'internet' : 'local html'
+  let result = `${type} and ${source} ${msg}`
   while (result.length < 35) {
     result += ' '
   }
@@ -41,5 +43,5 @@ const buildMsg = (msg) => {
 
 const buildOutput = (msg, $, begin) => {
   const txt = $('h1').text().trim().replace(/\n/g, ' ')
-  return `${buildMsg(msg)}${txt} / ${(Date.now() - begin)} ms`
+  return `${buildMsg(msg, $)}${txt} / ${(Date.now() - begin)} ms`
 }

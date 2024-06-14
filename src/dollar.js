@@ -10,13 +10,11 @@ const defaults = {
   html: undefined,
 }
 
-const dollar = (urlOrOptions, options) => {
+const dollar = async (urlOrOptions, options) => {
   const opts = buildOptions(urlOrOptions, options)
-  if (opts.jQuery) {
-    return jsdomify(opts.html)
-  } else {
-    return cheerify(opts.html)
-  }
+  const $ = await (opts.jQuery ? jsdomify(opts.html) : cheerify(opts.html))
+  $.dollarOptions = opts
+  return $
 }
 
 const cheerify = async (htmlPromise) =>
