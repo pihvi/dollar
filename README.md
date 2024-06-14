@@ -3,7 +3,7 @@ Web scraper with a jQuery like wrapper.
 ## Usage ##
 Uses Cheerio by default instead of jQuery for better performance.
 ```javascript
-import * as dollar from 'dollar'
+import dollar from 'dollar'
 
 const $ = await dollar('https://www.wikipedia.org/')
 console.log($('h1').text())
