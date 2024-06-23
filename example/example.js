@@ -3,32 +3,33 @@ import fs from 'fs'
 
 const wikiHtml = fs.readFileSync(`./example/wikipedia.html`, 'utf8')
 const wikiPromise = Promise.resolve(wikiHtml)
+const start = Date.now()
 console.log('Start..')
 
-const fetchData = async () => {
-  let start = Date.now()
-  const $1 = await dollar('https://www.wikipedia.org/', {jQuery: true})
-  console.log(buildOutput('', $1, start))
+dollar('https://www.wikipedia.org/', {jQuery: true})
+  .then(($) => {
+    console.log(buildOutput('', $, start))
+  })
 
-  start = Date.now()
-  const $2 = await dollar('https://www.wikipedia.org/')
-  console.log(buildOutput('', $2, start))
+dollar('https://www.wikipedia.org/')
+  .then(($) => {
+    console.log(buildOutput('', $, start))
+  })
 
-  start = Date.now()
-  const $3 = await dollar({html: wikiHtml})
-  console.log(buildOutput('', $3, start))
+dollar({html: wikiHtml})
+  .then(($) => {
+    console.log(buildOutput('', $, start))
+  })
 
-  start = Date.now()
-  const $4 = await dollar({html: wikiHtml, jQuery: true})
-  console.log(buildOutput('', $4, start))
+dollar({html: wikiHtml, jQuery: true})
+  .then(($) => {
+    console.log(buildOutput('', $, start))
+  })
 
-  start = Date.now()
-  const $5 = await dollar({html: wikiPromise, jQuery: false})
-  console.log(buildOutput('promise', $5, start))
-}
-
-fetchData()
-  .then(() => console.log('End..'))
+dollar({html: wikiPromise, jQuery: false})
+  .then(($) => {
+    console.log(buildOutput('promise', $, start))
+  })
 
 const buildMsg = (msg, $) => {
   const type = $.dollarOptions.jQuery ? 'jQuery' : 'Cheerio'
