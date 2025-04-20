@@ -34,6 +34,9 @@ console.log($('h1').text())
 Apache 2.0
 
 ## Changelog ##
+### 3.1.0 - 2025-04-20 ###
+- Update deps, Cheerio v1, jsdom v26
+
 ### 3.0.1 - 2024-06-14 ###
 - Update docs
 
